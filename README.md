@@ -1,13 +1,9 @@
 # Front-End Skeleton
 
-A comfortable environment for a fast front-end development.
+Wonderful example of expansion effect made with LESS, JS, and HTML.
 
-Every front-end must be reusable, modular, and easy to update. All technologies
-used by front-end must follow standards and be fast to write and parse by
-browser.
-
-**NOTE**: Before do anything you must replace occurrences *:project_name*,
-*:project_description* from your project's files.
+Register form that comes form nothing and grow up until fill full screen. A
+simple example to illustrate expansion effect.
 
 ## Getting Started
 
