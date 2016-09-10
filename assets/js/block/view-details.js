@@ -1,7 +1,9 @@
 var viewDetails = document.getElementsByClassName('view-details')[0];
 var closeLink = document.getElementsByClassName('view-details__close-link')[0];
 
-closeLink.addEventListener('click', onClickCloseLinkHandler);
+function setCloseLinkOnClicKEventListener() {
+  closeLink.addEventListener('click', onClickCloseLinkHandler);
+}
 
 function onClickCardHandler(e) {
   e = e || window.event;
@@ -21,3 +23,5 @@ function onClickCardHandler(e) {
 function onClickCloseLinkHandler() {
   viewDetails.classList.remove('view-details--expand');
 }
+
+setCloseLinkOnClicKEventListener();
