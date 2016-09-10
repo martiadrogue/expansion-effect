@@ -31,4 +31,8 @@ for the CSS it follows protocol [BEM][bem-website].
 To use livereload well, it's necessary to connect to *http::/localhost:8000*
 with Grunt running.
 
+## TODO
+
+Load and config task grunt-uncss to remove unused css.
+
 [bem-website]: http://getbem.com/
