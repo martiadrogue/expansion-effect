@@ -3,16 +3,22 @@ module.exports = function (grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     less: {
-      development: {
-        options: {
-          paths: ['assets/less'],
-        },
-        files: {
-          'assets/css/styles.css': 'assets/less/source.less',
-        },
+      options: {
+        paths: ['assets/less'],
+      },
+      files: {
+        'assets/css/styles.css': 'assets/less/source.less',
       },
     },
     sass: {
+      options: {
+        outputStyle: 'expanded',
+      },
+      files: {
+        'assets/css/styles.css': 'assets/scss/source.scss',
+      },
+    },
+    cssmin: {
       dev: {
         options: {
           outputStyle: 'expanded',
@@ -111,7 +117,7 @@ module.exports = function (grunt) {
       },
       sass: {
         files: 'assets/scss/**/*.scss',
-        tasks: ['sass:dev'],
+        tasks: ['sass'],
       },
       css: {
         files: 'assets/css/**/*.css',
