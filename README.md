@@ -2,7 +2,7 @@
 
 Wonderful example of expansion effect made with LESS, JS, and HTML.
 
-Register form that comes form nothing and grow up until fill full screen. A
+Details view that comes form article on the list and grow up until fill full screen. A
 simple example to illustrate expansion effect.
 
 ## Getting Started
