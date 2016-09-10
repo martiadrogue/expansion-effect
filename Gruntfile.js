@@ -42,36 +42,50 @@ module.exports = function (grunt) {
       },
     },
     uglify: {
-      options: {
-        compress: {
-          drop_console: false,
+      dev: {
+        options: {
+          beautify: {
+            width: 80,
+            beautify: true,
+          },
+          preserveComments: true,
+          mangle: false,
+          banner: "'use strict';\n",
+          process: function (src, filepath) {
+            return src.replace(/(^|\n)[ \t]*('use strict'|"use strict");?\s*/g, '$1');
+          },
         },
-        global_defs: {
-          DEBUG: false,
-        },
-        dead_code: true,
-        preserveComments: false,
-        banner: "'use strict';",
-        process: function (src, filepath) {
-          return src.replace(/(^|\n)[ \t]*('use strict'|"use strict");?\s*/g, '$1');
-        },
-      },
-      source: {
-        src: ['assets/js/block/**/*.js'],
-        dest: 'js/main.js',
-      },
-      lib: {
         files: [
+          { 'js/main.js': ['assets/js/block/**/*.js'] },
           {
             expand: true,
             cwd: 'assets/js/lib',
             src: '**/*.*',
             dest: 'js',
           },
+          {
+            expand: true,
+            cwd: 'assets/js/raw',
+            src: '**/*.json',
+            dest: 'js/raw',
+          },
         ],
       },
-      resource: {
+      build: {
+        options: {
+          banner: "'use strict';",
+          process: function (src, filepath) {
+            return src.replace(/(^|\n)[ \t]*('use strict'|"use strict");?\s*/g, '$1');
+          },
+        },
         files: [
+          { 'js/main.js': ['assets/js/block/**/*.js'] },
+          {
+            expand: true,
+            cwd: 'assets/js/lib',
+            src: '**/*.*',
+            dest: 'js',
+          },
           {
             expand: true,
             cwd: 'assets/js/raw',
@@ -115,7 +129,7 @@ module.exports = function (grunt) {
       },
       js: {
         files: 'assets/js/**/*.js',
-        tasks: ['uglify'],
+        tasks: ['uglify:dev'],
       },
       img: {
         files: 'assets/img/**/*.*',
@@ -140,4 +154,5 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-connect');
 
   grunt.registerTask('default', ['connect', 'watch']);
+  grunt.registerTask('build', ['less', 'sass', 'cssmin', 'uglify:build', 'imagemin']);
 };
