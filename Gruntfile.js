@@ -19,21 +19,11 @@ module.exports = function (grunt) {
       },
     },
     cssmin: {
-      dev: {
-        options: {
-          outputStyle: 'expanded',
-        },
-        files: {
-          'assets/css/styles.css': 'assets/scss/source.scss',
-        },
+      options: {
+        keepSpecialComments: 0,
       },
-      build: {
-        options: {
-          outputStyle: 'compressed',
-        },
-        files: {
-          'assets/css/styles.css': 'assets/scss/source.scss',
-        },
+      files: {
+        'assets/css/styles.css': 'assets/scss/source.scss',
       },
     },
     cssmin: {
