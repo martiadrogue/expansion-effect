@@ -56,9 +56,9 @@ module.exports = function (grunt) {
           return src.replace(/(^|\n)[ \t]*('use strict'|"use strict");?\s*/g, '$1');
         },
       },
-      build: {
+      source: {
         src: ['assets/js/block/**/*.js'],
-        dest: 'js/build.js',
+        dest: 'js/main.js',
       },
       lib: {
         files: [
