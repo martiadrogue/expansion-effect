@@ -8,11 +8,27 @@ module.exports = function (grunt) {
       img: ['img/'],
     },
     less: {
-      options: {
-        paths: ['assets/less'],
+      dev: {
+        options: {
+          paths: ['assets/less'],
+        },
+        files: {
+          'assets/css/styles.css': 'assets/less/source.less',
+        },
       },
-      files: {
-        'assets/css/styles.css': 'assets/less/source.less',
+      build: {
+        options: {
+          paths: ['assets/less'],
+          plugins: [
+            new (require('less-plugin-autoprefix'))({ browsers: ['last 2 versions'] }),
+          ],
+          modifyVars: {
+            bgColor: 'red',
+          },
+        },
+        files: {
+          'assets/css/styles.css': 'assets/less/source.less',
+        },
       },
     },
     sass: {
@@ -114,7 +130,7 @@ module.exports = function (grunt) {
       },
       less: {
         files: 'assets/less/**/*.less',
-        tasks: ['less'],
+        tasks: ['less:dev'],
       },
       sass: {
         files: 'assets/scss/**/*.scss',
@@ -152,5 +168,5 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
 
   grunt.registerTask('default', ['connect', 'watch']);
-  grunt.registerTask('build', ['clean', 'less', 'sass', 'cssmin', 'uglify:build', 'imagemin']);
+  grunt.registerTask('build', ['clean', 'less:build', 'sass', 'cssmin', 'uglify:build', 'imagemin']);
 };
